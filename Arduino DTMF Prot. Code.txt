@@ -1,0 +1,62 @@
+int binary_data_from_DTMF[4]={0,0,0,0};
+int sum=0;
+int fan1=10;
+int fan2=11;
+int fan3=12;
+int fan4=13;
+void room1()
+{
+digitalWrite(fan1,HIGH);
+}
+void room2()
+{
+digitalWrite(fan2,HIGH);
+}
+void room3()
+{
+digitalWrite(fan3,HIGH);
+}
+void room4()
+{
+digitalWrite(fan4,HIGH);
+}
+void setup()
+{
+// INPUT FROM DTMF
+for(int i=6;i<10;i++)
+{
+28 | P a g e
+pinMode(i,INPUT);
+}
+// OUTPUT FOR IO CARD
+for(int i=4;i<8;i++)
+{
+pinMode(i,OUTPUT);
+digitalWrite(i,LOW);
+}
+}
+void loop()
+{
+for(int i=6;i<10;i++)
+{
+binary_data_from_DTMF[i]=digitalRead(i);
+}
+sum=((binary_data_from_DTMF[6]*1)+(binary_data_from_DTMF[7]*2)+(binary_data_fr
+om_DTMF[8]*4)+(binary_data_from_DTMF[9]*8));
+if(sum==1)
+{
+room1();
+}
+else if(sum==2)
+{
+room2();
+}
+else if(sum==3)
+{
+room3();
+}
+else if(sum==4)
+{
+room4();
+}
+}
